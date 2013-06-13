@@ -1,0 +1,126 @@
+<html ng-app>
+<head>
+    <!--[if IE]><![endif]-->
+    <meta charset="utf-8">
+    <title>OneLetter : {{}}</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="reset.css">
+    <style>
+    div {
+        margin: 30px;
+        width: 400px;
+        height: 500px;
+        border: 1px #2ea33a solid;
+        text-align: center;
+    }
+
+    input {
+        border: 5px solid white; 
+        -webkit-box-shadow: 
+          inset 0 0 8px  rgba(0,0,0,0.1),
+                0 0 16px rgba(0,0,0,0.1); 
+        -moz-box-shadow: 
+          inset 0 0 8px  rgba(0,0,0,0.1),
+                0 0 16px rgba(0,0,0,0.1); 
+        box-shadow: 
+          inset 0 0 8px  rgba(0,0,0,0.1),
+                0 0 16px rgba(0,0,0,0.1); 
+        padding: 15px;
+        background: rgba(255,255,255,0.5);
+        margin: 0 0 10px 0;
+    }
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+      border-bottom: 1px solid #ccc;
+    }
+
+    li:last-child {
+      border: none;
+    }
+
+    li a {
+      text-decoration: none;
+      color: #000;
+
+      -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+      -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+      -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+      -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+      transition: font-size 0.3s ease, background-color 0.3s ease;
+      display: block;
+      width: 200px;
+    }
+
+    li a:hover {
+      font-size: 30px;
+      background: #f6f6f6;
+    }
+    </style>
+    
+</head>
+<body data-ng-app="onelet">
+    <div data-ng-controller="mainCtrl">
+        <select>
+            <option>This doesn't work yet :D</option>
+            <option>Arabic – ar</option>
+            <option>Bulgarian – bg</option>
+            <option>Czech – cs</option>
+            <option>Danish – da</option>
+            <option>German – de</option>
+            <option>Greek – el</option>
+            <option selected="selected">English – en</option>
+            <option>Spanish – es</option>
+            <option>Estonian – et</option>
+            <option>Farsi – fa</option>
+            <option>Finnish – fi</option>
+            <option>French – fr</option>
+            <option>Hebrew – he</option>
+            <option>Croatian – hr</option>
+            <option>Hungarian – hu</option>
+            <option>Indonesian – id</option>
+            <option>Icelandic – is</option>
+            <option>Italian – it</option>
+            <option>Korean – ko</option>
+            <option>Lithuanian – lt</option>
+            <option>Latvian – lv</option>
+            <option>Macedonian – mk</option>
+            <option>Malay – ms</option>
+            <option>Dutch – nl</option>
+            <option>Norwegian – no</option>
+            <option>Polish – pl</option>
+            <option>Portuguese – pt</option>
+            <option>Portuguese Brazilian – pt-br</option>
+            <option>Romanian – ro</option>
+            <option>Russian – ru</option>
+            <option>Slovak – sk</option>
+            <option>Slovenian – sl</option>
+            <option>Albanian – sq</option>
+            <option>Serbian Cyrillic – sr-Cyrl</option>
+            <option>Serbian Latin – sr-Latn</option>
+            <option>Swedish – sv</option>
+            <option>Turkish – tr</option>
+            <option>Ukrainian – uk</option>
+            <option>Simplified Chinese – zh-CN</option>
+        </select>
+      <h2><input ng-model="q" type="text" /><br /></h2>
+        <ul>
+            <li ng-repeat="res in data | filter:q | limitTo:7">
+                <a>{{res}}&nbsp;&nbsp;&nbsp;&nbsp; </a>
+                <img alt="Play Pronunciation!" src="play.png" onClick="playClip('{{res}}');" />
+            </li>
+        </ul>
+        <audio id="player">Your browser does not support HTML5 audio.</audio> 
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+
+    <script src="ol.js"></script>
+</body></html>
