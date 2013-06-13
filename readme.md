@@ -1,17 +1,13 @@
 OneLetter
 ======
 
-A single-page webapp, using AngularJS, jQuery, PHP and frequency lists to bring you the ability to search words in any language and hear their pronunciation immediately from Forvo, listed by order of frequency.
+OneLetter is the best way to find a word in any language and hear its
+pronunciation immediately.
+OneLetter uses word-lists from movie subtitles for a database and enables you to instantly search through it all, with a button to hear the pronunciation from Forvo instantly.
 
-In development, but already useful!
-
-Install
-====
- - Clone project
- - open ol.html
+OneLetter uses AngularJS, jQuery, Forvo API.
 
 TODO
 ===
- - Add a hell lot of other languages except english (Easy!)
  - Make the interface nice and smooth (The css is a bit ugly right now)
  - Setup a github.io page so y'all could take a look and use it.
