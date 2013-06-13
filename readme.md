@@ -5,6 +5,11 @@ A single-page webapp, using AngularJS, jQuery, PHP and frequency lists to bring 
 
 In development, but already useful!
 
+Install
+====
+ - Clone project
+ - open ol.html
+
 TODO
 ===
  - Add a hell lot of other languages except english (Easy!)
