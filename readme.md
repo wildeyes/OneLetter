@@ -5,7 +5,12 @@ OneLetter is the best way to find a word in any language and hear its
 pronunciation immediately.
 OneLetter uses word-lists from movie subtitles for a database and enables you to instantly search through it all, with a button to hear the pronunciation from Forvo instantly.
 
-OneLetter uses AngularJS, jQuery, Forvo API.
+OneLetter uses AngularJS and Forvo API.
+
+Known Bugs
+----------
+ - If Forvo doesn't find pronunciation for my word app is stuck.
+
 
 TODO
 ===

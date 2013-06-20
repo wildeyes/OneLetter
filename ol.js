@@ -14,32 +14,53 @@ function mainCtrl ($scope, $http) {
         ll[i] = {value:tmp[1],text:tmp[0]};
     }
     $scope.langs = ll;
-    $scope.selectedLang = 'en';
-    loadlang($http,$scope,$scope.selectedLang);
+    $scope.selectedLang = localStorage['lang'] || 'en';
 
     $scope.$watch('selectedLang', function() {
-        loadlang($http,$scope,$scope.selectedLang);
+        lang = $scope.selectedLang
+        loadlang($http,$scope,lang);
+        localStorage['lang'] = lang
     }, true);
 
+    $scope.currentPage = 0
+    $scope.pageSize = 15
+    $scope.data = []
+    $scope.reset = function () {
+        $scope.currentPage = 0;
+    }
+    $scope.numberOfPages = function () {
+        return Math.ceil($scope.data.length/$scope.pageSize);
+    }
+
     function loadlang($http,$scope,lang) {
-        $http.get('dicts/' + lang + '_50K.txt.less').success(function(data) {
-            $scope.data = data.split('\n');
-        }).error(function (err){
+        path = 'dicts/' + lang;
+        $http.get(path).success(function(data) {
+            $scope.data = data;
+        }).error(function (err) {
             console.log(err);
         });
     }
+    $scope.cachedRange = null;
+    $scope.range = function(min, max, step){
+        if ($scope.cachedRange && $scope.cachedRange.min == min && $scope.cachedRange.max == max) return $scope.cachedRange
+        step = (step === undefined) ? 1 : step;
+        var input = [];
+        for (var i=min; i<= max; i += step) input.push(i);
+        if ($scope.cachedRange == null)
+            $scope.cachedRange = {'min':min,'max':max,'step':step,'arr':input}
+  };
 }
-onelet.filter("cleanstr", function() {
-    return function(str) {
-        return str.replace(/(\r\n|\n|\r)/gm,"");
-    };
+onelet.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
 });
 
-function playClip(img, res) {
+function playClip(img, word) {
     if(active)
         return;
     active = true;
-    word = res.split(' ')[0];
     lang = "en";//, lang = $('#language').val().split(' – ')[1] || "en";
     urlz = url + encodeURI(word)+'/language/' + lang;
 

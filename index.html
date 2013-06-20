@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="assets/reset.css">
-    <script src="https://raw.github.com/cloudhead/less.js/master/dist/less-1.3.3.min.js"></script>
+    <script type="application/javascript" src="https://raw.github.com/cloudhead/less.js/master/dist/less-1.3.3.min.js"></script>
     <style>
       #main {
         width: 200px;
@@ -49,17 +49,24 @@
 <body data-ng-app="onelet">
     <div data-ng-controller="mainCtrl" id="main">
       <h2>OneLetter</h2>
+      <h4>Type a letter in the inputbox!</h4><br />
       
-      <input data-ng-model="q" type="text" />
+      <input data-ng-model="q" type="text" ng-click="reset()" />
       <select id="language" data-ng-model="selectedLang" data-ng-options="obj.value as obj.text for obj in langs">
           {{selectedLang | json}}
       </select>
       <ul>
-          <li ng-repeat="res in data | filter:q | limitTo:15">
-              <a>{{res}}&nbsp;&nbsp;&nbsp;&nbsp; </a>
-              <img class="play" src="/assets/play.png" alt="Play Pronunciation!" onClick="playClip(this,'{{res | cleanstr}}');" />
+          <li ng-repeat="res in data | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+              <a>{{res[0]}}</a>
+              <img class="play" src="/assets/play.png" alt="Play Pronunciation!" onClick="playClip(this,'{{ res[0] }}');" />
           </li>
       </ul>
+      <br />
+      <a href="" ng-disabled="currentPage == 0" ng-click="currentPage = currentPage - 1">Back!</a>
+      -{{ currentPage }}-
+      <a href="" ng-disabled="currentPage >=  data.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next!</a>
+
+      <br /><br /><br />
       <audio id="player">Your browser does not support HTML5 audio.</audio> 
       <b>Written by <a href="https://github.com/wildeyes">WildEyes</a>. <a href="https://github.com/wildeyes/OneLetter">OneLetter GitHub Page</a></b>
     </div>
